@@ -1,7 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright (C) 2017 Diego Trujillo <diego.trujillo@alumni.nmt.edu>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package ageindays;
 
@@ -12,6 +23,7 @@ import java.util.GregorianCalendar;
 /**
  *
  * @author Diego Trujillo <diego.trujillo@alumni.nmt.edu>
+ * CIS 406 - CH3, p148, #27
  */
 public class AgeInDays {
 
@@ -25,9 +37,7 @@ public class AgeInDays {
         //String input="";
         //Scanner stringScanner = new Scanner(input);
         //scanner.useDelimiter("-");
-        
-        //format input dates to friendly day of week
-        SimpleDateFormat dayOfWeek = new SimpleDateFormat("EEEE"); 
+         
         
         //Ask the user for input
         System.out.println("Hello. Type your Birthday (YYYY MM DD):");
@@ -40,7 +50,7 @@ public class AgeInDays {
         
         //System.out.println("you entered: "+input);
         
-        //calendar.compareTo to verify birth date does not occur in the future
+        
         
         /* The Plan:
             convert user input into a calendar object representing their BDAY
@@ -65,6 +75,19 @@ public class AgeInDays {
         //DEFAULT constructor creates a calendar representing now
         GregorianCalendar now = new GregorianCalendar();
         
+        //TODO calendar.compareTo to verify birth date does not occur in the future
+        /*  Returns 0 if calendars are equal
+            Returns -1 if the time of the current is less than arguement
+            returns 1 of the time of current is greater than arguement
+        */
+        
+        if(now.compareTo(birth)< 0){
+            //now is less than birth, birthday is in the future
+            System.out.println("Time Traveler detected. Don't worry."
+                    + "\nYour secret is safe with me.");
+            return;
+        }
+        
         //getTimeInMillis returns a LONG
         long AGE = now.getTimeInMillis() - birth.getTimeInMillis();
         
@@ -79,9 +102,9 @@ public class AgeInDays {
         Long ageInDays = AGE / 1000 / 60 / 60 / 24;
         
         
-        //System.out.println("AGE: "+AGE);
+        //System.out.println("AGE: "+AGE);  //age since EPOCH
         System.out.println("Age in Days: "+ageInDays);
-        //System.out.println("Years: "+(ageInDays / 365));  //sanity check
+        System.out.println("Years: "+(ageInDays / 365));  //sanity check
         
     }
     
